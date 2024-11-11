@@ -5,22 +5,36 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Heading for instruction -->
+    <TextView
+        android:id="@+id/instructionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click the club to see upcoming events"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:textColor="@android:color/black" />
+
+    <!-- Club Name -->
     <TextView
         android:id="@+id/clubNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Club Name"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
+    <!-- Club Description -->
     <TextView
         android:id="@+id/clubDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
         android:textSize="14sp"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp" />
 
+    <!-- Club Leader -->
     <TextView
         android:id="@+id/clubLeaderText"
         android:layout_width="wrap_content"
@@ -28,5 +42,13 @@
         android:text="Leader Name"
         android:textSize="14sp"
         android:layout_marginTop="4dp"
-        android:textStyle="italic"/>
+        android:textStyle="italic" />
+
+    <!-- Divider line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/darker_gray"/>
 </LinearLayout>
