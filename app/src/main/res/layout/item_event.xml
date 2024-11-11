@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:background="?android:attr/selectableItemBackground" >
+
+    <!-- Event Name -->
+    <TextView
+        android:id="@+id/eventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Name"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Event Description -->
+    <TextView
+        android:id="@+id/eventDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Description"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Event Time -->
+    <TextView
+        android:id="@+id/eventTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Time"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Event Venue -->
+    <TextView
+        android:id="@+id/eventVenue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Venue"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
+
+    <!-- Delete Button -->
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Event"
+        android:layout_marginTop="8dp" />
+
+    <!-- Update Button -->
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Event"
+        android:layout_marginTop="8dp" />
+
+
+
+
+</LinearLayout>

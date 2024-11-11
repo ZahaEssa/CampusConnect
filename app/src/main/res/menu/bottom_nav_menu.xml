@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_create_club"
+        android:title="Create Club"
+       />
+    <item
+        android:id="@+id/nav_view_clubs"
+        android:title="View Clubs"
+  />
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Settings"
+     />
+</menu>

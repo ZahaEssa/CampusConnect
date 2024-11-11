@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etClubName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter club name" />
+
+    <EditText
+        android:id="@+id/etClubDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter club description" />
+
+    <EditText
+        android:id="@+id/etLeaderName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter leader name" />
+
+    <Button
+        android:id="@+id/btnCreateClub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Club" />
+
+    <Button
+        android:id="@+id/btnEditClub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edit Club"
+        android:visibility="gone" />
+
+</LinearLayout>
