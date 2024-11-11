@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_event_management"
+        android:title="Event Management"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_club_management"
+        android:title="Club Management"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_member_management"
+        android:title="Member Management"
+        android:showAsAction="ifRoom"/>
+</menu>

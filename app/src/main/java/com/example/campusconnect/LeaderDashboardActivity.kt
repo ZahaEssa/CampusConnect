@@ -1,11 +1,12 @@
 package com.example.campusconnect
-
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.Toolbar
+import android.widget.Button
+import android.view.View
 
 class LeaderDashboardActivity : AppCompatActivity() {
 
@@ -13,40 +14,56 @@ class LeaderDashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_leader_dashboard)
 
+        // Set up the toolbar
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         val eventManagementButton: Button = findViewById(R.id.btnEventManagement)
         val clubManagementButton: Button = findViewById(R.id.btnClubManagement)
         val memberManagementButton: Button = findViewById(R.id.btnMemberManagement)
 
-        // Initially, all the buttons are visible
-        eventManagementButton.visibility = View.VISIBLE
-        clubManagementButton.visibility = View.VISIBLE
-        memberManagementButton.visibility = View.VISIBLE
-
+        // Button listeners for fragment replacements
         eventManagementButton.setOnClickListener {
-            // Hide the buttons when the Event Management button is clicked
             hideButtons()
-
-            // Replace the entire activity content with the event management layout (fragment)
             replaceWithFragment(EventManagementFragment())
-            Toast.makeText(this, "Event Management clicked", Toast.LENGTH_SHORT).show()
         }
 
         clubManagementButton.setOnClickListener {
-            // Hide the buttons when the Club Management button is clicked
             hideButtons()
-
-            // Replace the entire activity content with the club management layout (fragment)
             replaceWithFragment(ClubManagementFragment())
-            Toast.makeText(this, "Club Management clicked", Toast.LENGTH_SHORT).show()
         }
 
         memberManagementButton.setOnClickListener {
-            // Hide the buttons when the Member Management button is clicked
             hideButtons()
-
-            // Replace the entire activity content with the member management layout (fragment)
            // replaceWithFragment(MemberManagementFragment())
-            Toast.makeText(this, "Member Management clicked", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Create options menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    // Handle item selection from the options menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_event_management -> {
+                hideButtons()
+                replaceWithFragment(EventManagementFragment())
+                true
+            }
+            R.id.action_club_management -> {
+                hideButtons()
+                replaceWithFragment(ClubManagementFragment())
+                true
+            }
+            R.id.action_member_management -> {
+                hideButtons()
+               // replaceWithFragment(MemberManagementFragment())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -64,7 +81,7 @@ class LeaderDashboardActivity : AppCompatActivity() {
     // Function to replace the fragment based on the clicked button
     private fun replaceWithFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(android.R.id.content, fragment)
+        transaction.replace(R.id.frameLayout, fragment)
         transaction.addToBackStack(null) // Optional: allows user to navigate back to the previous layout
         transaction.commit()
     }
