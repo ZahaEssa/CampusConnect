@@ -17,13 +17,14 @@ import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import android.content.Intent
-class EventManagementFragment : Fragment() {
 
+class EventManagementFragment : Fragment() {
 
     private lateinit var etEventName: EditText
     private lateinit var etEventDescription: EditText
     private lateinit var etEventTime: EditText
     private lateinit var etEventVenue: EditText
+    private lateinit var etEventLink: EditText  // Add the EditText for event link
     private lateinit var btnCreateEvent: Button
     private lateinit var recyclerViewEvents: RecyclerView
     private val eventsList = mutableListOf<Event>()
@@ -44,8 +45,6 @@ class EventManagementFragment : Fragment() {
                 requireActivity().finish()  // Optionally finish the current activity
             }
         }
-
-
         requireActivity().onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
@@ -60,6 +59,7 @@ class EventManagementFragment : Fragment() {
         etEventDescription = view.findViewById(R.id.etEventDescription)
         etEventTime = view.findViewById(R.id.etEventTime)
         etEventVenue = view.findViewById(R.id.etEventVenue)
+        etEventLink = view.findViewById(R.id.etEventLink)  // Initialize the event link EditText
         btnCreateEvent = view.findViewById(R.id.btnCreateEvent)
         recyclerViewEvents = view.findViewById(R.id.recyclerViewEvents)
 
@@ -136,6 +136,7 @@ class EventManagementFragment : Fragment() {
                             description = document.getString("description") ?: "",
                             time = document.getString("time") ?: "",
                             venue = document.getString("venue") ?: "",
+                            link = document.getString("link") ?: "", // Add event link
                             id = document.id
                         )
                         eventsList.add(event)
@@ -155,6 +156,7 @@ class EventManagementFragment : Fragment() {
         val eventDescription = etEventDescription.text.toString().trim()
         val eventTime = etEventTime.text.toString().trim()
         val eventVenue = etEventVenue.text.toString().trim()
+        val eventLink = etEventLink.text.toString().trim()  // Get event link
 
         if (eventName.isNotEmpty() && eventDescription.isNotEmpty() && eventTime.isNotEmpty() && eventVenue.isNotEmpty()) {
             val eventData = hashMapOf(
@@ -162,6 +164,7 @@ class EventManagementFragment : Fragment() {
                 "description" to eventDescription,
                 "time" to eventTime,
                 "venue" to eventVenue,
+                "link" to eventLink,  // Add link to the event data
                 "createdBy" to currentUserId!!,
                 "clubId" to clubId!!
             )
@@ -176,6 +179,7 @@ class EventManagementFragment : Fragment() {
                     etEventDescription.text.clear()
                     etEventTime.text.clear()
                     etEventVenue.text.clear()
+                    etEventLink.text.clear()  // Clear the event link field
                 }
                 .addOnFailureListener {
                     Toast.makeText(requireContext(), "Failed to create event", Toast.LENGTH_SHORT).show()
@@ -203,11 +207,13 @@ class EventManagementFragment : Fragment() {
         val etDialogEventDescription: EditText = dialogView.findViewById(R.id.etDialogEventDescription)
         val etDialogEventTime: EditText = dialogView.findViewById(R.id.etDialogEventTime)
         val etDialogEventVenue: EditText = dialogView.findViewById(R.id.etDialogEventVenue)
+        val etDialogEventLink: EditText = dialogView.findViewById(R.id.etDialogEventLink)  // Add link field
 
         etDialogEventName.setText(event.name)
         etDialogEventDescription.setText(event.description)
         etDialogEventTime.setText(event.time)
         etDialogEventVenue.setText(event.venue)
+        etDialogEventLink.setText(event.link)  // Set the event link
 
         val builder = AlertDialog.Builder(requireContext())
             .setTitle("Edit Event")
@@ -217,13 +223,15 @@ class EventManagementFragment : Fragment() {
                 val updatedEventDescription = etDialogEventDescription.text.toString().trim()
                 val updatedEventTime = etDialogEventTime.text.toString().trim()
                 val updatedEventVenue = etDialogEventVenue.text.toString().trim()
+                val updatedEventLink = etDialogEventLink.text.toString().trim()  // Get updated link
 
                 if (updatedEventName.isNotEmpty() && updatedEventDescription.isNotEmpty() && updatedEventTime.isNotEmpty() && updatedEventVenue.isNotEmpty()) {
                     val updatedEventData: MutableMap<String, Any> = mutableMapOf(
                         "name" to updatedEventName,
                         "description" to updatedEventDescription,
                         "time" to updatedEventTime,
-                        "venue" to updatedEventVenue
+                        "venue" to updatedEventVenue,
+                        "link" to updatedEventLink  // Update link
                     )
 
                     db.collection("events").document(event.id).update(updatedEventData)
@@ -234,10 +242,15 @@ class EventManagementFragment : Fragment() {
                         .addOnFailureListener {
                             Toast.makeText(requireContext(), "Failed to update event", Toast.LENGTH_SHORT).show()
                         }
+                } else {
+                    Toast.makeText(requireContext(), "Please enter all event details", Toast.LENGTH_SHORT).show()
                 }
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+
         builder.show()
     }
 }

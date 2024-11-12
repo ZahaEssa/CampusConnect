@@ -40,15 +40,15 @@ class EventsActivity : AppCompatActivity() {
     private fun loadEventsForClub() {
         if (clubId.isNotEmpty()) {
             db.collection("events")
-                .whereEqualTo("clubId", clubId)  // Filter by clubId
+                .whereEqualTo("clubId", clubId)
                 .get()
                 .addOnSuccessListener { documents ->
-                    eventList.clear()  // Clear the list to avoid duplicates
+                    eventList.clear()
                     for (document in documents) {
                         val event = document.toObject(Event::class.java)
                         eventList.add(event)
                     }
-                    eventAdapter.notifyDataSetChanged()  // Notify adapter to refresh the UI
+                    eventAdapter.notifyDataSetChanged()
                     Log.d("EventsActivity", "Loaded ${eventList.size} events for club $clubId")
                 }
                 .addOnFailureListener { e ->

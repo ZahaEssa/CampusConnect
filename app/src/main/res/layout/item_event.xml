@@ -43,6 +43,16 @@
         android:textSize="14sp"
         android:layout_marginTop="4dp" />
 
+
+    <TextView
+        android:id="@+id/eventLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="link"
+        android:autoLink="web"
+        android:visibility="visible" />
+
+
     <!-- Delete Button -->
     <Button
         android:id="@+id/btnDelete"

@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"> interactivity in club
+    android:padding="16dp">
 
     <!-- Heading for instruction -->
     <TextView
         android:id="@+id/instructionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click the club to see upcoming events"
+        android:text="Click the club to view and register for upcoming events"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp"

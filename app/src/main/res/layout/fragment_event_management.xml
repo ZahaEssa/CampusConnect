@@ -36,6 +36,14 @@
         android:hint="Event Venue"
         android:inputType="text" />
 
+    <EditText
+        android:id="@+id/etEventLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Event Link" />
+
+
+
     <!-- Create Event Button -->
     <Button
         android:id="@+id/btnCreateEvent"

@@ -33,4 +33,12 @@
         android:hint="Event Venue"
         android:inputType="text" />
 
+    <EditText
+        android:id="@+id/etDialogEventLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Event Link" />
+
+
+
 </LinearLayout>

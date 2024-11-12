@@ -5,6 +5,7 @@ data class Event(
     val description: String = "",
     val time: String = "",
     val venue: String = "",
+    val link: String = "",
     val id: String = ""
 )
 

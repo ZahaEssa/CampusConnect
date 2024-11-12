@@ -32,26 +32,27 @@ class EventAdapter(
         val eventDescription: TextView = itemView.findViewById(R.id.eventDescription)
         val eventTime: TextView = itemView.findViewById(R.id.eventTime)
         val eventVenue: TextView = itemView.findViewById(R.id.eventVenue)
+        val eventLink: TextView = itemView.findViewById(R.id.eventLink)  // Add TextView for link
         val deleteButton: Button = itemView.findViewById(R.id.btnDelete)
-        val updateButton: Button = itemView.findViewById(R.id.btnUpdate) // Update button
+        val updateButton: Button = itemView.findViewById(R.id.btnUpdate)
 
         fun bind(event: Event) {
             eventName.text = event.name
             eventDescription.text = event.description
             eventTime.text = event.time
             eventVenue.text = event.venue
+            eventLink.text = event.link  // Set event link text
 
             itemView.setOnClickListener {
-                eventClickListener.onEventClick(event)  // Trigger onEventClick
+                eventClickListener.onEventClick(event)
             }
 
             deleteButton.setOnClickListener {
-                eventDeleteListener.onEventDelete(event)  // Trigger onEventDelete
+                eventDeleteListener.onEventDelete(event)
             }
 
-            // Handle update button click
             updateButton.setOnClickListener {
-                eventUpdateListener.onEventUpdate(event)  // Trigger onEventUpdate
+                eventUpdateListener.onEventUpdate(event)
             }
         }
     }

@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class EventAdapterForStudent(private val eventList: List<Event>) : RecyclerView.Adapter<EventAdapterForStudent.EventViewHolder>() {
+ class EventAdapterForStudent(private val eventList: List<Event>) : RecyclerView.Adapter<EventAdapterForStudent.EventViewHolder>() {
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.eventName)
         val descriptionTextView: TextView = itemView.findViewById(R.id.eventDescription)
         val timeTextView: TextView = itemView.findViewById(R.id.eventTime)
         val venueTextView: TextView = itemView.findViewById(R.id.eventVenue)
+        val linkTextView: TextView = itemView.findViewById(R.id.eventLink) // Link TextView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -28,6 +29,14 @@ class EventAdapterForStudent(private val eventList: List<Event>) : RecyclerView.
         holder.descriptionTextView.text = event.description
         holder.timeTextView.text = event.time
         holder.venueTextView.text = event.venue
+
+        // Set link visibility and text
+        if (!event.link.isNullOrEmpty()) {
+            holder.linkTextView.visibility = View.VISIBLE
+            holder.linkTextView.text = event.link
+        } else {
+            holder.linkTextView.visibility = View.GONE
+        }
     }
 
     override fun getItemCount(): Int {
