@@ -55,32 +55,32 @@ class SignInActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         db.collection("users").document(userId).get()
             .addOnSuccessListener { document ->
-                if (document != null) {
-                    val userRole = document.getString("role")
-                    if (userRole != null) {
-                        // Redirect based on the user's role
-                        when (userRole) {
-                            "leader" -> {
-                                val intent = Intent(this, LeaderDashboardActivity::class.java)
-                                startActivity(intent)
-                                finish()  // Close the SignInActivity
-                            }
-                            "student" -> {
-                                val intent = Intent(this, StudentDashboardActivity::class.java)
-                                startActivity(intent)
-                                finish()  // Close the SignInActivity
-                            }
-                            else -> {
-                                Toast.makeText(this, "Invalid role", Toast.LENGTH_SHORT).show()
-                            }
+                if (document != null && document.exists()) {
+                    val isAdmin = document.getBoolean("isAdmin") ?: false
+                    val role = document.getString("role") ?: "student"
+
+                    // Redirect based on isAdmin and role
+                    when {
+                        isAdmin -> {
+                            val intent = Intent(this, LeaderDashboardActivity::class.java)
+                            startActivity(intent)
+                            finish() // Close the SignInActivity
+                        }
+                        role == "student" -> {
+                            val intent = Intent(this, StudentDashboardActivity::class.java)
+                            startActivity(intent)
+                            finish() // Close the SignInActivity
+                        }
+                        else -> {
+                            Toast.makeText(this, "Access restricted. Contact admin.", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
-                    Toast.makeText(this, "User role not found.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener { e ->
-                Toast.makeText(this, "Error fetching user role: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error fetching user data: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

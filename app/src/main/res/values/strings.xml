@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">Campus Connect</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Placeholder strings for fragments (can be changed or removed as needed) -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <!-- Example Lorem Ipsum text -->
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -44,4 +45,11 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+    <!-- Leader Panel string added -->
+    <string name="leader_panel">Leader Panel</string>
+
+    <!-- Add any other strings you may need for your app -->
+    <string name="student_dashboard">Student Dashboard</string>
+    <string name="view_clubs">View Clubs</string>
 </resources>
