@@ -1,14 +1,22 @@
 package com.example.campusconnect
+
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.Toolbar
-import android.widget.Button
 import android.view.View
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LeaderDashboardActivity : AppCompatActivity() {
+
+    private lateinit var eventManagementButton: Button
+    private lateinit var clubManagementButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,24 +26,48 @@ class LeaderDashboardActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val eventManagementButton: Button = findViewById(R.id.btnEventManagement)
-        val clubManagementButton: Button = findViewById(R.id.btnClubManagement)
-        val memberManagementButton: Button = findViewById(R.id.btnMemberManagement)
+        // Initialize buttons
+        eventManagementButton = findViewById(R.id.btnEventManagement)
+        clubManagementButton = findViewById(R.id.btnClubManagement)
+
+        // Hide buttons by default
+        eventManagementButton.visibility = View.GONE
+        clubManagementButton.visibility = View.GONE
+
+        // Check user role and isAdmin from Firestore
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            FirebaseFirestore.getInstance().collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        val isAdmin = document.getBoolean("isAdmin") ?: false
+                        val role = document.getString("role") ?: "student"
+
+                        // Adjust UI based on role and isAdmin
+                        if (isAdmin || role == "leader") {
+                            eventManagementButton.visibility = View.VISIBLE
+                            clubManagementButton.visibility = View.VISIBLE
+                        } else {
+                            Toast.makeText(this, "Access restricted.", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Failed to load user data: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
 
         // Button listeners for fragment replacements
         eventManagementButton.setOnClickListener {
-            hideButtons()
             replaceWithFragment(EventManagementFragment())
         }
 
         clubManagementButton.setOnClickListener {
-            hideButtons()
             replaceWithFragment(ClubManagementFragment())
-        }
-
-        memberManagementButton.setOnClickListener {
-            hideButtons()
-           // replaceWithFragment(MemberManagementFragment())
         }
     }
 
@@ -49,42 +81,22 @@ class LeaderDashboardActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_event_management -> {
-                hideButtons()
                 replaceWithFragment(EventManagementFragment())
                 true
             }
             R.id.action_club_management -> {
-                hideButtons()
                 replaceWithFragment(ClubManagementFragment())
-                true
-            }
-            R.id.action_member_management -> {
-                hideButtons()
-               // replaceWithFragment(MemberManagementFragment())
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    // Function to hide all buttons
-    private fun hideButtons() {
-        val eventManagementButton: Button = findViewById(R.id.btnEventManagement)
-        val clubManagementButton: Button = findViewById(R.id.btnClubManagement)
-        val memberManagementButton: Button = findViewById(R.id.btnMemberManagement)
-
-        eventManagementButton.visibility = View.GONE
-        clubManagementButton.visibility = View.GONE
-        memberManagementButton.visibility = View.GONE
-    }
-
     // Function to replace the fragment based on the clicked button
     private fun replaceWithFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
-        transaction.addToBackStack(null) // Optional: allows user to navigate back to the previous layout
+        transaction.addToBackStack(null) // Allows user to navigate back
         transaction.commit()
     }
-
-
 }
