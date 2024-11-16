@@ -46,24 +46,24 @@
         android:inputType="textPassword" />
 
     <!-- Role Selection (RadioGroup) -->
-    <RadioGroup
-        android:id="@+id/radioGroupRole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<!--    <RadioGroup-->
+<!--        android:id="@+id/radioGroupRole"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
 
-        <RadioButton
-            android:id="@+id/radioLeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Leader" />
+<!--        <RadioButton-->
+<!--            android:id="@+id/radioLeader"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Leader" />-->
 
-        <RadioButton
-            android:id="@+id/radioStudent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Student" />
-    </RadioGroup>
+<!--        <RadioButton-->
+<!--            android:id="@+id/radioStudent"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Student" />-->
+<!--    </RadioGroup>-->
 
     <!-- Sign Up Button -->
     <Button
