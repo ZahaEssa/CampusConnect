@@ -39,15 +39,6 @@ class SignUpActivity : AppCompatActivity() {
             val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString().trim()
 
-            // Validate input
-            if (firstName.isNotEmpty() && lastName.isNotEmpty() && admissionNumber.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                signUp(firstName, lastName, admissionNumber, email, password)
-            } else {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
     private fun signUp(firstName: String, lastName: String, admissionNumber: String, email: String, password: String) {
         // Create the user with email and password
         mAuth.createUserWithEmailAndPassword(email, password)
