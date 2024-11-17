@@ -39,6 +39,11 @@ class SignUpActivity : AppCompatActivity() {
             val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString().trim()
 
+            // Call the signUp function
+            signUp(firstName, lastName, admissionNumber, email, password)
+        }
+    }
+
     private fun signUp(firstName: String, lastName: String, admissionNumber: String, email: String, password: String) {
         // Create the user with email and password
         mAuth.createUserWithEmailAndPassword(email, password)
