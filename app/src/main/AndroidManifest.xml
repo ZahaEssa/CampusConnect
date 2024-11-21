@@ -15,6 +15,15 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ClubsActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -22,10 +31,7 @@
             android:name=".EventsActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ClubEventsActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".LeaderDashboardActivity"
             android:exported="false"
@@ -42,18 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Admin, Leader, and Student Activities -->
-        <activity
-            android:name=".AdminActivity"
-            android:exported="true"
-            android:label="Admin" />
-        <activity
-            android:name=".LeaderManagementActivity"
-            android:exported="true"
-            android:label="Leader" />
-        <activity
-            android:name=".StudentActivity"
-            android:exported="true"
-            android:label="Student" /> <!-- Add SignInActivity -->
+ <!-- Add SignInActivity -->
         <activity
             android:name=".SignInActivity"
             android:exported="true"
