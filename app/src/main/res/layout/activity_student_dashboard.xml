@@ -1,36 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:ignore="ExtraText">
 
     <!-- Title or App Header -->
     <TextView
         android:id="@+id/dashboardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Student Dashboard"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:text="@string/student_dashboard"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:layout_marginBottom="16dp" />
 
+    <!-- Button to View Clubs -->
     <Button
         android:id="@+id/viewClubsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="View Clubs"
-        android:textSize="18sp"
+        android:text="@string/view_clubs"
+    android:textSize="18sp"
+    android:visibility="visible"
+    android:layout_marginBottom="20dp" />
 
-
-        android:layout_marginBottom="20dp"/>
+    <!-- Button for Leader Panel -->
+    <Button
+        android:id="@+id/leaderPanelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/leader_panel"
+    android:textSize="18sp"
+    android:visibility="visible"
+    android:layout_marginBottom="20dp" />
 
     <!-- RecyclerView for listing clubs -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/clubsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

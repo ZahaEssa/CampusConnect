@@ -39,19 +39,12 @@ class SignUpActivity : AppCompatActivity() {
             val email = edtEmail.text.toString().trim()
             val password = edtPassword.text.toString().trim()
 
-            // Set the default role to "student"
-            val role = "student"
-
-            // Validate input
-            if (firstName.isNotEmpty() && lastName.isNotEmpty() && admissionNumber.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                signUp(firstName, lastName, admissionNumber, email, password, role)
-            } else {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
-            }
+            // Call the signUp function
+            signUp(firstName, lastName, admissionNumber, email, password)
         }
     }
 
-    private fun signUp(firstName: String, lastName: String, admissionNumber: String, email: String, password: String, role: String) {
+    private fun signUp(firstName: String, lastName: String, admissionNumber: String, email: String, password: String) {
         // Create the user with email and password
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -65,7 +58,8 @@ class SignUpActivity : AppCompatActivity() {
                             "lastName" to lastName,
                             "admissionNumber" to admissionNumber,
                             "email" to email,
-                            "role" to role
+                            "isAdmin" to false, // Set isAdmin to false by default
+                            "role" to "student" // Set role to "student" by default
                         )
 
                         // Save user data to Firestore
@@ -77,7 +71,7 @@ class SignUpActivity : AppCompatActivity() {
                                 // Redirect to SignInActivity after successful sign-up
                                 val intent = Intent(this, SignInActivity::class.java)
                                 startActivity(intent)
-                                finish()  // Close SignUpActivity to prevent going back to it
+                                finish() // Close SignUpActivity to prevent going back to it
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "Error saving user data: ${e.message}", Toast.LENGTH_SHORT).show()
