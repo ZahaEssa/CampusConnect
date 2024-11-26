@@ -78,6 +78,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     implementation("com.google.firebase:firebase-firestore-ktx:25.1.1")
     implementation("com.google.firebase:firebase-messaging:24.1.0")
+//    implementation ("com.google.firebase:firebase-analytics:21.4.0")
     // for adding cardview
     implementation("androidx.cardview:cardview:1.0.0")
     implementation ("androidx.appcompat:appcompat:1.4.1")
