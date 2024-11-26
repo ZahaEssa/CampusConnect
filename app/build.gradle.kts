@@ -65,15 +65,19 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.activity)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+
+    //firebase stuff
+    implementation("com.google.firebase:firebase-bom:32.5.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
+    implementation("com.google.firebase:firebase-firestore-ktx:25.1.1")
+    implementation("com.google.firebase:firebase-messaging:24.1.0")
     // for adding cardview
     implementation("androidx.cardview:cardview:1.0.0")
     implementation ("androidx.appcompat:appcompat:1.4.1")
@@ -81,5 +85,6 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.recyclerview:recyclerview:1.3.0")
     implementation ("androidx.cardview:cardview:1.0.0")
+//    implementation ("com.google.android.gms:play-services-base:21.3.0")
 
 }
