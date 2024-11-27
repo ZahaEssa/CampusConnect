@@ -1,6 +1,5 @@
 package com.example.campusconnect
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -25,6 +24,11 @@ class LeaderDashboardActivity : AppCompatActivity() {
         // Set up the toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        // Enable back button in the toolbar
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)  // This enables the back button
+        actionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)  // Custom back arrow (optional)
 
         // Initialize buttons
         eventManagementButton = findViewById(R.id.btnEventManagement)
@@ -88,6 +92,11 @@ class LeaderDashboardActivity : AppCompatActivity() {
                 replaceWithFragment(ClubManagementFragment())
                 true
             }
+            android.R.id.home -> {
+                // This handles the back arrow click in the toolbar
+                onBackPressed()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -101,7 +110,7 @@ class LeaderDashboardActivity : AppCompatActivity() {
         // Replace the fragment
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
-        transaction.addToBackStack(null) // Allows user to navigate back
+        transaction.addToBackStack(null) // This ensures the fragment is added to the back stack
         transaction.commit()
     }
 
