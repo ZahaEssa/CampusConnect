@@ -9,6 +9,7 @@ import android.content.Intent
 import android.os.Build
 import android.util.Log
 import android.widget.RemoteViews
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -29,7 +30,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
 
-            // Log confirmation that the channel was created
             Log.d("FCM", "Notification channel created with ID: $channelId")
         }
     }
@@ -40,60 +40,29 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        // Check if there is a notification payload
-        if (remoteMessage.notification != null) {
-            // Log notification content
-            Log.d("FCM Notification", "Title: ${remoteMessage.notification?.title}")
-            Log.d("FCM Notification", "Body: ${remoteMessage.notification?.body}")
+        super.onMessageReceived(remoteMessage)
 
-            // Generate the notification
-            generateNotification(
-                remoteMessage.notification?.title ?: "Default Title",
-                remoteMessage.notification?.body ?: "Default Message"
-            )
-        } else if (remoteMessage.data.isNotEmpty()) {
-            val title = remoteMessage.data["title"] ?: "Default Title"
-            val message = remoteMessage.data["message"] ?: "Default Message"
-            generateNotification(title, message)
-        }
-    }
+        // Get notification data
+        val title = remoteMessage.notification?.title ?: "Default Title"
+        val body = remoteMessage.notification?.body ?: "Default Body"
 
-    @SuppressLint("RemoteViewLayout")
-    private fun getRemoteView(title: String, message: String): RemoteViews {
-        val remoteView = RemoteViews(packageName, R.layout.notification)
-        remoteView.setTextViewText(R.id.title, title)
-        remoteView.setTextViewText(R.id.message, message)
-        remoteView.setImageViewResource(R.id.app_logo, R.drawable.drakebird)  // Ensure correct image resource
-        return remoteView
-    }
+        // Log for debugging
+        Log.d("FCM", "Message received: $title - $body")
 
-    // Function to generate and show the notification
-    private fun generateNotification(title: String, message: String) {
-        val intent = Intent(this, MainActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        }
+        // Create notification
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-        )
-
-        val remoteView = getRemoteView(title, message)
-
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.drakebird)
+        val notification = NotificationCompat.Builder(this, channelId)
             .setContentTitle(title)
-            .setContentText(message)
+            .setContentText(body)
+            .setSmallIcon(R.drawable.drakebird)  // Ensure this icon is available
             .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000))
-            .setOnlyAlertOnce(true)
-            .setContentIntent(pendingIntent)
-            .setCustomContentView(remoteView)  // Use setCustomContentView instead
+            .build()
 
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        // Issue the notification
-        notificationManager.notify(0, builder.build())
+        // Show the notification
+        notificationManager.notify(1, notification)
     }
 }
+

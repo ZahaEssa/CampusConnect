@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="First Name"
-        android:inputType="textPersonName" />
+        android:minHeight="48dp"
+        android:padding="12dp" />
 
     <!-- Last Name EditText -->
     <EditText
@@ -19,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Last Name"
-        android:inputType="textPersonName" />
+        android:minHeight="48dp"
+        android:padding="12dp" />
 
     <!-- Admission Number EditText -->
     <EditText
@@ -27,7 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Admission Number"
-        android:inputType="text" />
+        android:minHeight="48dp"
+        android:padding="12dp" />
 
     <!-- Email EditText -->
     <EditText
@@ -35,7 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:padding="12dp" />
 
     <!-- Password EditText -->
     <EditText
@@ -43,13 +48,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword" />
-
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:padding="12dp" />
 
     <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up" />
+        android:text="Sign Up"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="16dp" />
+
+    <!-- Link to Sign In -->
+    <TextView
+        android:id="@+id/tvSignInLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Sign In"
+        android:layout_marginTop="16dp"
+        android:padding="12dp"
+        android:gravity="center"
+        android:minHeight="48dp"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="goToSignIn"
+        android:textColor="#6200EE" />
 </LinearLayout>
