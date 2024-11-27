@@ -14,19 +14,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
+
+        <!-- SplashScreen Activity as launcher -->
         <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- MainActivity with updated intent filter -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Other Activities -->
         <activity
             android:name=".ClubsActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".EventsActivity"
             android:exported="false"
@@ -37,30 +53,27 @@
             android:exported="false"
             android:label="Leader Dashboard"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- Admin, Leader, and Student Activities -->
- <!-- Add SignInActivity -->
+        <!-- SignInActivity -->
         <activity
             android:name=".SignInActivity"
             android:exported="true"
-            android:label="Sign In" />
+            android:label="Sign In"
+            android:theme="@style/Theme.AppCompat.Light" />
+
+        <!-- SignUpActivity -->
         <activity
             android:name=".SignUpActivity"
             android:exported="true"
-            android:label="Sign Up" />
+            android:label="Sign Up"
+            android:theme="@style/Theme.AppCompat.Light" />
+
+        <!-- StudentDashboardActivity -->
         <activity
             android:name=".StudentDashboardActivity"
             android:exported="true"
             android:label="Student Dashboard" />
+
     </application>
 
 </manifest>
