@@ -2,9 +2,12 @@ package com.example.campusconnect
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.Button
 import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -42,14 +45,17 @@ class SignUpActivity : AppCompatActivity() {
             // Call the signUp function
             signUp(firstName, lastName, admissionNumber, email, password)
         }
+
+        // Enable back arrow functionality in the action bar
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)  // Ensure this line for setting the back icon
     }
 
     private fun signUp(firstName: String, lastName: String, admissionNumber: String, email: String, password: String) {
-        // Create the user with email and password
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // After successful sign-up, store the user's details in Firestore
                     val userId = FirebaseAuth.getInstance().currentUser?.uid
 
                     if (userId != null) {
@@ -58,29 +64,48 @@ class SignUpActivity : AppCompatActivity() {
                             "lastName" to lastName,
                             "admissionNumber" to admissionNumber,
                             "email" to email,
-                            "isAdmin" to false, // Set isAdmin to false by default
-                            "role" to "student" // Set role to "student" by default
+                            "isAdmin" to false,
+                            "role" to "student"
                         )
 
-                        // Save user data to Firestore
                         FirebaseFirestore.getInstance().collection("users").document(userId)
                             .set(userData)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "User signed up successfully.", Toast.LENGTH_SHORT).show()
 
-                                // Redirect to SignInActivity after successful sign-up
                                 val intent = Intent(this, SignInActivity::class.java)
                                 startActivity(intent)
-                                finish() // Close SignUpActivity to prevent going back to it
+                                finish()
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "Error saving user data: ${e.message}", Toast.LENGTH_SHORT).show()
                             }
                     }
                 } else {
-                    // If sign-up failed, show an error message
                     Toast.makeText(this, "Sign Up failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }
+
+    // Handle back arrow click
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Navigate to the homepage (MainActivity)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish() // Optionally, call finish to ensure this activity is not kept in the stack
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    // Sign-in link click function
+    fun goToSignIn(view: View) {
+        val intent = Intent(this, SignInActivity::class.java)
+        startActivity(intent)
+    }
 }
+
+
