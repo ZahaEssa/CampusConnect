@@ -94,9 +94,15 @@ class LeaderDashboardActivity : AppCompatActivity() {
 
     // Function to replace the fragment based on the clicked button
     private fun replaceWithFragment(fragment: Fragment) {
+        // Hide the buttons
+        eventManagementButton.visibility = View.GONE
+        clubManagementButton.visibility = View.GONE
+
+        // Replace the fragment
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
         transaction.addToBackStack(null) // Allows user to navigate back
         transaction.commit()
     }
+
 }

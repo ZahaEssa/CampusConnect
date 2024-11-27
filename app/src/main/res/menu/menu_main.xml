@@ -11,8 +11,5 @@
         android:title="Club Management"
         android:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/action_member_management"
-        android:title="Member Management"
-        android:showAsAction="ifRoom"/>
+
 </menu>
