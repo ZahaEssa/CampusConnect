@@ -80,11 +80,15 @@
         <activity
             android:name=".SignInActivity"
             android:exported="true"
-            android:label="Sign In" />
+            android:label="Sign In"
+            android:theme="@style/Theme.AppCompat.Light" />
+
         <activity
             android:name=".SignUpActivity"
             android:exported="true"
-            android:label="Sign Up" />
+            android:label="Sign Up"
+            android:theme="@style/Theme.AppCompat.Light" />
+
         <activity
             android:name=".StudentDashboardActivity"
             android:exported="true"
