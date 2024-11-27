@@ -2,10 +2,12 @@ package com.example.campusconnect
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -57,5 +59,25 @@ class StudentDashboardActivity : AppCompatActivity() {
             val intent = Intent(this, LeaderDashboardActivity::class.java) // Redirect to leader dashboard
             startActivity(intent)
         }
+
+        // Set up Toolbar as ActionBar
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        // Enable back arrow in ActionBar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back) // Ensure this icon exists in drawable
+    }
+
+    // Handle back arrow click
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Navigate back to the previous activity
+                onBackPressed() // This will navigate to the previous activity
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
