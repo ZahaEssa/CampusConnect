@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <!-- Toolbar for Options Menu -->
     <androidx.appcompat.widget.Toolbar
@@ -17,10 +18,11 @@
         android:id="@+id/btnEventManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:text="Event Management"
+        android:text="Event Management"
         android:textSize="18sp"
         android:visibility="visible"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="16dp" />
 
     <!-- Button to manage clubs -->
     <Button
@@ -30,9 +32,8 @@
         android:textSize="18sp"
         android:visibility="visible"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="16dp"
         android:text="Club Management" />
-
-
 
     <!-- FrameLayout to host the fragments -->
     <FrameLayout
