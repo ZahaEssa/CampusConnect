@@ -17,13 +17,19 @@
         android:id="@+id/btnEventManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Event Management" />
+       android:text="Event Management"
+        android:textSize="18sp"
+        android:visibility="visible"
+        android:layout_marginBottom="20dp"/>
 
     <!-- Button to manage clubs -->
     <Button
         android:id="@+id/btnClubManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:visibility="visible"
+        android:layout_marginBottom="20dp"
         android:text="Club Management" />
 
 
