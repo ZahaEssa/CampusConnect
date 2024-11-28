@@ -107,11 +107,19 @@ class LeaderDashboardActivity : AppCompatActivity() {
         eventManagementButton.visibility = View.GONE
         clubManagementButton.visibility = View.GONE
 
+        // Set the title dynamically based on the fragment
+        when (fragment) {
+            is EventManagementFragment -> supportActionBar?.title = "Event Management"
+            is ClubManagementFragment -> supportActionBar?.title = "Club Management"
+            else -> supportActionBar?.title = "Leader Dashboard"
+        }
+
         // Replace the fragment
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frameLayout, fragment)
         transaction.addToBackStack(null) // This ensures the fragment is added to the back stack
         transaction.commit()
     }
+
 
 }
