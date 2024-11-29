@@ -4,12 +4,12 @@
     <item
         android:id="@+id/action_event_management"
         android:title="Event Management"
-        android:showAsAction="ifRoom"/>
+     />
 
     <item
         android:id="@+id/action_club_management"
         android:title="Club Management"
-        android:showAsAction="ifRoom"/>
+       />
 
 
 </menu>

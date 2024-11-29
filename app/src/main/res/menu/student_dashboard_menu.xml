@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Menu item for Viewing Clubs -->
+    <item
+        android:id="@+id/action_view_clubs"
+        android:title="View Clubs"
+        />
+
+    <!-- Menu item for Viewing Favorites -->
+    <item
+        android:id="@+id/action_view_favorites"
+        android:title="View Favorites"
+        />
+
+</menu>

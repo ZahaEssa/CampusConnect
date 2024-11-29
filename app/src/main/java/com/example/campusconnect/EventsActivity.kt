@@ -2,6 +2,7 @@ package com.example.campusconnect
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -50,6 +51,44 @@ class EventsActivity : AppCompatActivity() {
         loadEventsForClub()
     }
 
+    // Inflate the menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.student_dashboard_menu, menu) // Inflate the menu with your XML file
+        return true
+    }
+
+    // Handle menu item clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_view_clubs -> {
+                // Navigate to Clubs Activity
+                val intent = Intent(this, ClubsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_view_favorites -> {
+                // Navigate to View Favorites
+                val intent = Intent(this, FavoritesActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            android.R.id.home -> {
+                // Navigate back to the ClubsActivity
+                navigateToClubsActivity()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun navigateToClubsActivity() {
+        // Intent to navigate back to the ClubsActivity
+        val intent = Intent(this, ClubsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish() // Finish this activity so that it is removed from the back stack
+    }
+
     private fun loadEventsForClub() {
         if (clubId.isNotEmpty()) {
             db.collection("events")
@@ -70,26 +109,6 @@ class EventsActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Invalid Club ID", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    // Handle the back arrow click in the ActionBar
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                // Navigate back to the ClubsActivity
-                navigateToClubsActivity()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun navigateToClubsActivity() {
-        // Intent to navigate back to the ClubsActivity
-        val intent = Intent(this, ClubsActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        finish() // Finish this activity so that it is removed from the back stack
     }
 
     // Add an event to favorites

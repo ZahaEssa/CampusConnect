@@ -2,6 +2,8 @@ package com.example.campusconnect
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,10 +41,33 @@ class FavoritesActivity : AppCompatActivity() {
         loadFavoriteEvents()
     }
 
-    // Handle the ActionBar back button
-    override fun onSupportNavigateUp(): Boolean {
-        navigateToStudentDashboard()
+    // Inflate the menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.student_dashboard_menu, menu) // Inflate the menu with your XML file
         return true
+    }
+
+    // Handle menu item clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                navigateToStudentDashboard()  // Handle the back action
+                true
+            }
+            R.id.action_view_clubs -> {
+                // Navigate to Clubs Activity
+                val intent = Intent(this, ClubsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_view_favorites -> {
+                // Navigate to View Favorites (currently already in favorites screen)
+                val intent = Intent(this, FavoritesActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     // Handle the physical back button (hardware back)
@@ -89,4 +114,3 @@ class FavoritesActivity : AppCompatActivity() {
         favoriteEventAdapter.notifyDataSetChanged()
     }
 }
-

@@ -2,6 +2,7 @@ package com.example.campusconnect
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,16 +49,32 @@ class ClubsActivity : AppCompatActivity() {
         loadClubs()
     }
 
-    // Handle back arrow click
+    // Inflate the menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.student_dashboard_menu, menu) // Make sure your menu file is named correctly
+        return true
+    }
+
+    // Handle menu item clicks
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
+            R.id.action_view_clubs -> {
+                // Navigate to Clubs Activity (current activity, so no change)
+                true
+            }
+            R.id.action_view_favorites -> {
+                // Navigate to View Favorites
+                val intent = Intent(this, FavoritesActivity::class.java)
+                startActivity(intent)
+                true
+            }
             android.R.id.home -> {
                 // Handle the back button click
                 onBackPressed()  // This will navigate back to the previous activity
-                return true
+                true
             }
+            else -> super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun loadClubs() {
