@@ -19,11 +19,14 @@ class FavoritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
-        // Set the title of the activity
-        title = "Favorites"
+        // Set up the Toolbar and set the title to "Favorites"
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Favorites"  // Set the title to "Favorites"
 
         // Enable the back button in ActionBar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back) // Ensure you have this icon in drawable
 
         // Initialize RecyclerView
         favoritesRecyclerView = findViewById(R.id.favoritesRecyclerView)
@@ -92,16 +95,5 @@ class FavoritesActivity : AppCompatActivity() {
         }
 
         favoriteEventAdapter.notifyDataSetChanged()
-    }
-
-    // Handle back arrow click in the ActionBar
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                navigateToStudentDashboard() // Navigate back to the student dashboard
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

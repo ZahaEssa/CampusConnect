@@ -6,28 +6,17 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/backButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="start"-->
-<!--        android:src="@drawable/ic_arrow_back"-->
-<!--        android:background="?android:attr/selectableItemBackground"-->
-<!--        android:contentDescription="Back"-->
-<!--        android:padding="8dp" />-->
-
-
-    <TextView
-        android:id="@+id/favoritesHeading"
-        android:layout_width="wrap_content"
+    <!-- Toolbar for back button and title -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp"
-        android:text="Favorites"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:title="Favorites"
+        android:background="?android:attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/Theme.AppCompat.Light" />
 
+    <!-- RecyclerView for displaying favorite events -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"
         android:layout_width="match_parent"
