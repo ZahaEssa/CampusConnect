@@ -4,14 +4,15 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Toolbar at the top -->
+    <!-- Toolbar for back button and title with border -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        android:title="Events"
-        android:theme="?android:attr/actionBarTheme" />
+        android:background="?android:attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/Theme.AppCompat.Light"
+        android:layout_marginBottom="8dp" />
 
     <!-- Club name (optional) -->
     <TextView
