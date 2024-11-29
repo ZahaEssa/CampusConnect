@@ -1,7 +1,8 @@
 package com.example.campusconnect
 
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,17 @@ class EventsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_events)
+
+        // Set up the Toolbar as ActionBar
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        // Set the title of the toolbar dynamically (this will override the XML title)
+        supportActionBar?.title = "Events"
+
+        // Enable the back button in ActionBar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)  // Use your custom drawable for the back arrow
 
         // Retrieve clubId from Intent
         clubId = intent.getStringExtra("clubId") ?: ""
@@ -60,6 +72,26 @@ class EventsActivity : AppCompatActivity() {
         }
     }
 
+    // Handle the back arrow click in the ActionBar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // Navigate back to the ClubsActivity
+                navigateToClubsActivity()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun navigateToClubsActivity() {
+        // Intent to navigate back to the ClubsActivity
+        val intent = Intent(this, ClubsActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish() // Finish this activity so that it is removed from the back stack
+    }
+
     // Add an event to favorites
     fun addEventToFavorites(event: Event) {
         // Ensure the event ID is valid
@@ -68,7 +100,7 @@ class EventsActivity : AppCompatActivity() {
             return
         }
 
-        val sharedPreferences: SharedPreferences = getSharedPreferences("favorites", MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("favorites", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
         // Save the event ID
