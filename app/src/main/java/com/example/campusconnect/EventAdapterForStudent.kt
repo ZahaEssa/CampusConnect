@@ -31,44 +31,42 @@ class EventAdapterForStudent(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_event_student, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event_student, parent, false)
         return EventViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val event = eventList[position]
 
-        // Set the event details
+        // Set event details
         holder.nameTextView.text = event.name
         holder.descriptionTextView.text = event.description
         holder.timeTextView.text = event.time
         holder.venueTextView.text = event.venue
 
-        // Set the actual link if available
+        // Set link visibility
         if (event.link.isNotEmpty()) {
             holder.linkTextView.text = event.link
-            holder.linkTextView.visibility = View.VISIBLE // Make it visible if link exists
+            holder.linkTextView.visibility = View.VISIBLE
         } else {
-            holder.linkTextView.visibility = View.GONE // Hide if no link exists
+            holder.linkTextView.visibility = View.GONE
         }
 
-        // Set favorite icon based on whether the event is already favorited
+        // Update the favorite button based on event's favorite status
         holder.favoriteButton.setImageResource(
             if (isEventFavorite(event)) R.drawable.ic_favorite else R.drawable.ic_favorite_border
         )
 
-        // Handle the favorite button click
+        // Handle favorite button click
         holder.favoriteButton.setOnClickListener {
             if (isEventFavorite(event)) {
                 // Remove from favorites
                 removeEventFromFavorites(event)
                 holder.favoriteButton.setImageResource(R.drawable.ic_favorite_border)
-                Toast.makeText(context, "${event.name} removed from favorites!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "${event.name} removed from favorites!", Toast.LENGTH_SHORT).show()
 
                 if (isFavoritesScreen) {
-                    // Remove from list in favorites screen
+                    // Remove the event from the list in favorites screen
                     eventList.removeAt(position)
                     notifyItemRemoved(position)
                 }
@@ -76,8 +74,7 @@ class EventAdapterForStudent(
                 // Add to favorites
                 addEventToFavorites(event)
                 holder.favoriteButton.setImageResource(R.drawable.ic_favorite)
-                Toast.makeText(context, "${event.name} added to favorites!", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(context, "${event.name} added to favorites!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -86,26 +83,24 @@ class EventAdapterForStudent(
         return eventList.size
     }
 
-    // Check if an event is already in favorites
+    // Check if an event is a favorite (use its unique ID for key)
     private fun isEventFavorite(event: Event): Boolean {
-        return sharedPreferences.contains(event.id)
+        return sharedPreferences.contains(event.id)  // Checks if the event is in SharedPreferences
     }
 
-    // Add an event to favorites
+    // Add an event to favorites (store in SharedPreferences)
     private fun addEventToFavorites(event: Event) {
-        val eventJson = gson.toJson(event) // Serialize the event object
+        val eventJson = gson.toJson(event)  // Serialize the event object to JSON
         val editor = sharedPreferences.edit()
-        editor.putString(event.id, eventJson) // Save JSON string with Event ID as key
+        editor.putString(event.id, eventJson)  // Use event ID as the key
         editor.apply()
-
-        // Debugging Log
-        println("Event added to favorites: $eventJson")
     }
 
-    // Remove an event from favorites
+    // Remove an event from favorites (remove from SharedPreferences)
     private fun removeEventFromFavorites(event: Event) {
         val editor = sharedPreferences.edit()
-        editor.remove(event.id)
+        editor.remove(event.id)  // Use event ID to remove it from favorites
         editor.apply()
     }
 }
+

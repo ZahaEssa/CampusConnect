@@ -1,52 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:weightSum="1">
 
-    <TextView
-        android:id="@+id/eventName"
-        android:layout_width="wrap_content"
+    <!-- Event Details Container (text views for event info) -->
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Event Name"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:layout_weight="0.9"
+        android:paddingEnd="16dp">
 
-    <TextView
-        android:id="@+id/eventDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Event Description"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/eventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event Name"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/eventTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Event Time"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/eventDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event Description"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
 
-    <TextView
-        android:id="@+id/eventVenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Event Venue"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Event Time"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/eventLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="link"
-        android:autoLink="web"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/eventVenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event Venue"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
 
+        <TextView
+            android:id="@+id/eventLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="link"
+            android:autoLink="web"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+    </LinearLayout>
+
+    <!-- Favorite Button (placed beside the event details) -->
     <ImageButton
         android:id="@+id/favoriteButton"
         android:layout_width="wrap_content"
@@ -54,6 +65,6 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Remove from Favorites"
         android:padding="8dp"
-        android:src="@drawable/ic_favorite" />  <!-- Always show filled heart in favorites -->
+        android:src="@drawable/ic_favorite_border" />  <!-- Default to "Not Liked" -->
 
 </LinearLayout>

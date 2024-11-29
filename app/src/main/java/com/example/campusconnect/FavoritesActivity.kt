@@ -2,7 +2,6 @@ package com.example.campusconnect
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,9 +63,6 @@ class FavoritesActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("favorites", MODE_PRIVATE)
         val favoriteEventIds = sharedPreferences.all.keys.toList()
 
-        // Debugging Log
-        println("Favorite Event IDs: $favoriteEventIds")
-
         if (favoriteEventIds.isEmpty()) {
             Toast.makeText(this, "No favorite events yet!", Toast.LENGTH_SHORT).show()
             return
@@ -76,8 +72,6 @@ class FavoritesActivity : AppCompatActivity() {
 
         for (eventId in favoriteEventIds) {
             val eventJson = sharedPreferences.getString(eventId, null)
-            println("Retrieved Event JSON: $eventJson") // Debugging Log
-
             if (eventJson != null) {
                 try {
                     val event = gson.fromJson(eventJson, Event::class.java)
@@ -90,10 +84,9 @@ class FavoritesActivity : AppCompatActivity() {
 
         if (favoriteEventList.isEmpty()) {
             Toast.makeText(this, "No favorite events found!", Toast.LENGTH_SHORT).show()
-        } else {
-            println("Loaded Favorites: $favoriteEventList") // Debugging Log
         }
 
         favoriteEventAdapter.notifyDataSetChanged()
     }
 }
+
