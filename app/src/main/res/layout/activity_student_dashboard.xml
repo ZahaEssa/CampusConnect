@@ -7,15 +7,14 @@
     android:padding="16dp"
     tools:ignore="ExtraText">
 
-    <!-- Title or App Header -->
-    <TextView
-        android:id="@+id/dashboardTitle"
-        android:layout_width="wrap_content"
+    <!-- Toolbar for ActionBar with white background -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/student_dashboard"
-    android:textSize="20sp"
-    android:textStyle="bold"
-    android:layout_marginBottom="16dp" />
+        android:title="Student Dashboard"
+        android:background="#FFFFFF"
+    android:elevation="4dp"/>
 
     <!-- Button to View Clubs -->
     <Button
@@ -23,10 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/view_clubs"
-    android:textSize="18sp"
-    android:visibility="visible"
-    android:layout_marginBottom="20dp" />
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp" />
 
+    <!-- Button to View Favorites -->
     <Button
         android:id="@+id/viewFavoritesButton"
         android:layout_width="match_parent"
@@ -35,15 +34,15 @@
         android:textSize="18sp"
         android:layout_marginBottom="20dp" />
 
-    <!-- Button for Leader Panel -->
+    <!-- Button for Leader Panel (Initially hidden) -->
     <Button
         android:id="@+id/leaderPanelButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/leader_panel"
-    android:textSize="18sp"
-    android:visibility="visible"
-    android:layout_marginBottom="20dp" />
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
 
     <!-- RecyclerView for listing clubs -->
     <androidx.recyclerview.widget.RecyclerView
