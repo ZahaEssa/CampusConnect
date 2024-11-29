@@ -15,6 +15,7 @@ class StudentDashboardActivity : AppCompatActivity() {
 
     private lateinit var viewClubsButton: Button
     private lateinit var leaderPanelButton: Button
+    private lateinit var viewFavoritesButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +23,9 @@ class StudentDashboardActivity : AppCompatActivity() {
 
         // Initialize buttons
         viewClubsButton = findViewById(R.id.viewClubsButton)
-        leaderPanelButton = findViewById(R.id.leaderPanelButton) // Ensure this button is in your layout XML
+        leaderPanelButton = findViewById(R.id.leaderPanelButton)
+        viewFavoritesButton = findViewById(R.id.viewFavoritesButton)
+
         leaderPanelButton.visibility = View.GONE // Hide the leader panel button by default
 
         // Check if the current user is a leader
@@ -35,7 +38,6 @@ class StudentDashboardActivity : AppCompatActivity() {
                     if (document != null && document.exists()) {
                         val role = document.getString("role") ?: "student"
 
-                        // Adjust UI based on the user's role
                         if (role == "leader") {
                             leaderPanelButton.visibility = View.VISIBLE // Show leader panel for leaders
                         }
@@ -48,15 +50,19 @@ class StudentDashboardActivity : AppCompatActivity() {
                 }
         }
 
-        // Set onClickListener for viewClubsButton
+        // Set onClickListeners
         viewClubsButton.setOnClickListener {
             val intent = Intent(this, ClubsActivity::class.java)
             startActivity(intent)
         }
 
-        // Set onClickListener for leaderPanelButton (if it becomes visible)
         leaderPanelButton.setOnClickListener {
-            val intent = Intent(this, LeaderDashboardActivity::class.java) // Redirect to leader dashboard
+            val intent = Intent(this, LeaderDashboardActivity::class.java)
+            startActivity(intent)
+        }
+
+        viewFavoritesButton.setOnClickListener {
+            val intent = Intent(this, FavoritesActivity::class.java)
             startActivity(intent)
         }
 
@@ -81,3 +87,4 @@ class StudentDashboardActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 }
+

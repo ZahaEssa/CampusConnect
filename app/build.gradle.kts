@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
 
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -31,6 +32,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -53,7 +55,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -67,6 +68,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.firebase.messaging.ktx)
 
+    // Test dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,19 +76,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
 
-    //firebase stuff
+    // Firebase dependencies
     implementation("com.google.firebase:firebase-bom:32.5.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     implementation("com.google.firebase:firebase-firestore-ktx:25.1.1")
     implementation("com.google.firebase:firebase-messaging:24.1.0")
-//    implementation ("com.google.firebase:firebase-analytics:21.4.0")
-    // for adding cardview
-    implementation("androidx.cardview:cardview:1.0.0")
-    implementation ("androidx.appcompat:appcompat:1.4.1")
-    implementation ("androidx.constraintlayout:constraintlayout:2.0.4")
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.recyclerview:recyclerview:1.3.0")
-    implementation ("androidx.cardview:cardview:1.0.0")
-//    implementation ("com.google.android.gms:play-services-base:21.3.0")
 
+    // UI and support libraries
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
+
+    // Gson dependency
+    implementation("com.google.code.gson:gson:2.8.9")
 }

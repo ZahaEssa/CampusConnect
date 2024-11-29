@@ -52,4 +52,5 @@
     <!-- Add any other strings you may need for your app -->
     <string name="student_dashboard">Student Dashboard</string>
     <string name="view_clubs">View Clubs</string>
+    <string name="view_favorites">View Favorites</string> <!-- Added missing string -->
 </resources>

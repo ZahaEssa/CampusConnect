@@ -26,9 +26,9 @@
         android:id="@+id/eventTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Event Time"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/eventVenue"
@@ -38,7 +38,6 @@
         android:textSize="14sp"
         android:layout_marginTop="4dp" />
 
-    <!-- Link TextView for event link (optional) -->
     <TextView
         android:id="@+id/eventLink"
         android:layout_width="wrap_content"
@@ -48,11 +47,13 @@
         android:textSize="14sp"
         android:layout_marginTop="4dp" />
 
+    <ImageButton
+        android:id="@+id/favoriteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Remove from Favorites"
+        android:padding="8dp"
+        android:src="@drawable/ic_favorite" />  <!-- Always show filled heart in favorites -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/darker_gray"/>
 </LinearLayout>

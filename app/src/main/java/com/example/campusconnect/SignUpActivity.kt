@@ -49,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
         // Enable back arrow functionality in the action bar
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)  // Ensure this line for setting the back icon
+        actionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
     }
 
     private fun signUp(firstName: String, lastName: String, admissionNumber: String, email: String, password: String) {

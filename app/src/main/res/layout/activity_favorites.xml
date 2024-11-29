@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/backButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:src="@drawable/ic_arrow_back"-->
+<!--        android:background="?android:attr/selectableItemBackground"-->
+<!--        android:contentDescription="Back"-->
+<!--        android:padding="8dp" />-->
+
+
+    <TextView
+        android:id="@+id/favoritesHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="16dp"
+        android:text="Favorites"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoritesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:listitem="@layout/item_event_student" />
+
+</LinearLayout>

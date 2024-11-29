@@ -93,6 +93,9 @@
             android:name=".StudentDashboardActivity"
             android:exported="true"
             android:label="Student Dashboard" />
+
+        <activity android:name=".FavoritesActivity" />
+
     </application>
 
 </manifest>
